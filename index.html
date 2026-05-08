@@ -519,7 +519,44 @@ footer {
 .tit-mask.on span {
   transform: translateY(0) !important;
 }
+@media(max-width:768px) {
+  /* 1. 전체 기본 자간 리셋 (가독성 확보) */
+  body { 
+    letter-spacing: -0.02em !important; /* 전체적으로 살짝 좁혀서 트렌디하게 유지 */
+  }
 
+  /* 2. 대제목(Hero, Section Title) 자간 통일 */
+  .hero-h .ln, 
+  .section-title, 
+  .contact-h2 { 
+    letter-spacing: -0.03em !important; /* 큰 글씨는 조금 더 조여서 밀도감 있게 */
+    word-break: keep-all; /* 한글 단어 깨짐 방지 */
+  }
+
+  /* 3. 설명글 및 서술형 텍스트 자간 */
+  .hero-desc, 
+  .about-p, 
+  .svc-ko, 
+  .desc-gray,
+  .vl { 
+    letter-spacing: -0.01em !important; /* 읽는 글은 자간을 조금 더 넓게 */
+    line-height: 1.6;
+  }
+
+  /* 4. 태그 및 상단 네비게이션 (영문 대문자 중심) */
+  .tag, 
+  .nav-r, 
+  .svc-num, 
+  .lb { 
+    letter-spacing: 0.1em !important; /* 태그류는 오히려 넓혀서 구분감 제공 */
+    text-transform: uppercase;
+  }
+
+  /* 5. 서비스 리스트(What we DO) 자간 고정 */
+  .svc-en { 
+    letter-spacing: -0.02em !important; 
+  }
+}
 
 /* 클라이언트 영역 위아래 선 강제 삭제 */
 .cli-marquee { border-top: none !important; border-bottom: none !important; }
@@ -636,7 +673,7 @@ footer {
 <section id="works" class="section">
   <div class="works-head rv">
     <p class="tag line-tag">Works</p>
-    <h2 class="section-title"><span class="tit-mask"><span>Recent <span class="grad">Projects.</span></span></span></h2>
+    <h2 class="section-title"><span class="tit-mask"><span>Recent <span class="grad">Project.</span></span></span></h2>
   </div>
   <div class="wgrid rv d1">
     <div class="wcard" data-h><div class="wbg"></div><div class="wcard-inner"><div class="orange-line"></div><h3>TVCF</h3><p class="desc-gray">클라이언트  클라이언트  클리이언트</p></div></div>
