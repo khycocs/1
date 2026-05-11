@@ -657,6 +657,19 @@ nav {
 .tit-mask.on span {
   transform: translateY(0) !important;
 }
+/* 수정 전 */
+@keyframes mq{to{transform:translateX(-50%);}} /* 기존에 이미 -50%였다면 그대로 두시면 됩니다 */
+
+/* [체크] 만약 -100%로 되어 있다면 반드시 -50%로 수정하세요 */
+@keyframes mq {
+  to { transform: translateX(-50%); }
+}
+
+.title-track {
+  display: flex;
+  width: max-content; /* 이 속성이 있어야 텍스트가 안 잘리고 길게 늘어납니다 */
+  animation: mq 60s linear infinite; 
+}
 /* 클라이언트 영역 위아래 선 강제 삭제 */
 .cli-marquee { border-top: none !important; border-bottom: none !important; }
 #contact { border-top: none !important; }
@@ -727,6 +740,19 @@ nav {
     <span class="item fill">Execution</span><span class="star">✦</span>
     <span class="item">Commerce</span><span class="star">✦</span>
     <span class="item fill">Big Data</span><span class="star">✦</span>
+    <div class="title-bar">
+    <span class="item fill">Strategy</span><span class="star">✦</span>
+    <span class="item">Planning</span><span class="star">✦</span>
+    <span class="item fill">Execution</span><span class="star">✦</span>
+    <span class="item">Commerce</span><span class="star">✦</span>
+    <span class="item fill">Big Data</span><span class="star">✦</span>
+    
+    <span class="item fill">Strategy</span><span class="star">✦</span>
+    <span class="item">Planning</span><span class="star">✦</span>
+    <span class="item fill">Execution</span><span class="star">✦</span>
+    <span class="item">Commerce</span><span class="star">✦</span>
+    <span class="item fill">Big Data</span><span class="star">✦</span>
+  
   </div>
 </div>
 
