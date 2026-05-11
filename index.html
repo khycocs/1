@@ -252,6 +252,26 @@ footer p{font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:2px;}
   .section-title{font-size:36px!important;}
   .big-word-inner h2{font-size:42px;letter-spacing:0px;}
 }
+/* 1. 부모 박스: 영상이 튀어나가지 않게 가둠 */
+.wcard {
+  position: relative !important;
+  aspect-ratio: 16 / 9 !important; /* 팀장님이 잡으신 비율 고정 */
+  overflow: hidden !important;    /* [핵심] 이걸 넣어야 영상 가장자리가 잘려 들어갑니다 */
+  background: #0c0c10;
+  border-radius: 0;               /* 콕스 아이덴티티에 맞춰 직각 유지 */
+}
+
+/* 2. 자식 요소(영상): 박스 크기에 강제 일치 */
+.wbg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100.5% !important;  /* 미세한 1px 흰 선 방지를 위해 0.5% 더 키움 */
+  height: 100.5% !important;
+  transform: translate(-50%, -50%); /* 정확히 정중앙 정렬 */
+  object-fit: cover !important;     /* [핵심] 박스 크기에 맞춰 영상 비율 자동 최적화 */
+  z-index: 0 !important;
+}
 </style>
 </head>
 <body>
@@ -360,10 +380,50 @@ footer p{font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:2px;}
     <h2 class="section-title"><span class="tit-mask"><span>Recent <span class="grad">Project.</span></span></span></h2>
   </div>
   <div class="wgrid rv d1">
-    <div class="wcard sr" data-h><div class="wbg"></div><div class="wcard-inner"><div class="orange-line"></div><h3>TV CF</h3><p class="desc-gray">비타500&nbsp;&nbsp;&nbsp;&nbsp;SK magic&nbsp;&nbsp;&nbsp;&nbsp;LG U+</p></div></div>
-    <div class="wcard sr" data-h><div class="wbg"></div><div class="wcard-inner"><div class="orange-line"></div><h3>바이럴 콘텐츠</h3><p class="desc-gray">금호타이어&nbsp;&nbsp;&nbsp;&nbsp;Kwangdong&nbsp;&nbsp;&nbsp;&nbsp;이노션</p></div></div>
-    <div class="wcard sr" data-h><div class="wbg"></div><div class="wcard-inner"><div class="orange-line"></div><h3>모션 그래픽</h3><p class="desc-gray">금호타이어&nbsp;&nbsp;&nbsp;&nbsp;LG U+&nbsp;&nbsp;&nbsp;&nbsp;에코그램</p></div></div>
-    <div class="wcard sr" data-h><div class="wbg"></div><div class="wcard-inner"><div class="orange-line"></div><h3>SNS 마케팅</h3><p class="desc-gray">비타500&nbsp;&nbsp;&nbsp;&nbsp;LG U+&nbsp;&nbsp;&nbsp;&nbsp;Curble</p></div></div>
+    <div class="wcard sr" data-h>
+  <video class="wbg" autoplay muted loop playsinline>
+    <source src="img/main.mp4" type="video/mp4">
+  </video>
+  
+  <div class="wcard-inner">
+    <div class="orange-line"></div>
+    <h3>TV CF</h3>
+    <p class="desc-gray">비타500&nbsp;&nbsp;&nbsp;&nbsp;SK magic&nbsp;&nbsp;&nbsp;&nbsp;LG U+</p>
+  </div>
+</div>
+<div class="wcard sr" data-h>
+  <video class="wbg" autoplay muted loop playsinline>
+    <source src="img/main.mp4" type="video/mp4">
+  </video>
+  
+  <div class="wcard-inner">
+    <div class="orange-line"></div>
+    <h3>바이럴 콘텐츠</h3>
+    <p class="desc-gray">금호타이어&nbsp;&nbsp;&nbsp;&nbsp;Kwangdong&nbsp;&nbsp;&nbsp;&nbsp;이노션</p>
+  </div>
+</div>
+<div class="wcard sr" data-h>
+  <video class="wbg" autoplay muted loop playsinline>
+    <source src="img/CELA.mp4" type="video/mp4">
+  </video>
+  
+  <div class="wcard-inner">
+    <div class="orange-line"></div>
+    <h3>모션 그래픽</h3>
+    <p class="desc-gray">금호타이어&nbsp;&nbsp;&nbsp;&nbsp;LG U+&nbsp;&nbsp;&nbsp;&nbsp;에코그램</p>
+  </div>
+</div>
+<div class="wcard sr" data-h>
+  <video class="wbg" autoplay muted loop playsinline>
+    <source src="img/CELA.mp4" type="video/mp4">
+  </video>
+  
+  <div class="wcard-inner">
+    <div class="orange-line"></div>
+    <h3>SNS 마케팅</h3>
+    <p class="desc-gray">비타500&nbsp;&nbsp;&nbsp;&nbsp;LG U+&nbsp;&nbsp;&nbsp;&nbsp;Curble</p>
+  </div>
+</div>
     <div class="wcard sr" data-h><div class="wbg"></div><div class="wcard-inner"><div class="orange-line"></div><h3>SK매직<br>연간 디지털 캠페인</h3><p class="desc-gray">SK매직</p></div><div class="warr">↗</div></div>
     <div class="wcard sr" data-h><div class="wbg"></div><div class="wcard-inner"><div class="orange-line"></div><h3>글램팜<br>인스타그램 채널 운영</h3><p class="desc-gray">글램팜</p></div><div class="warr">↗</div></div>
     <div class="wcard sr" data-h><div class="wbg"></div><div class="wcard-inner"><div class="orange-line"></div><h3>커블 800만개<br>디지털 퍼포먼스</h3><p class="desc-gray">커블</p></div><div class="warr">↗</div></div>
