@@ -32,6 +32,10 @@ body{background:var(--dk);color:#fff;font-family:'Roboto','Pretendard',sans-seri
 .tit-mask span{display:inline-block;transform:translateY(115%);transition:transform 1.2s cubic-bezier(0.19,1,0.22,1);padding-bottom:0.2em!important;line-height:1.2!important;}
 .tit-mask.on span{transform:translateY(0)!important;}
 
+/* SCROLL REVEAL - 스크롤 시 올라오는 효과 */
+.sr{opacity:0;transform:translateY(50px);transition:opacity 0.8s cubic-bezier(0.19,1,0.22,1),transform 0.8s cubic-bezier(0.19,1,0.22,1);}
+.sr.on{opacity:1;transform:translateY(0);}
+
 /* CURSOR */
 .cur{position:fixed;width:6px;height:6px;background:var(--o);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .12s ease;mix-blend-mode:difference;}
 .cur-r{position:fixed;width:38px;height:38px;border:1px solid rgba(255,255,255,.25);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .25s cubic-bezier(.2,.8,.2,1);}
@@ -131,23 +135,13 @@ nav::before{content:'';position:absolute;inset:0;background:linear-gradient(rgba
 .wgrid .wcard:nth-child(n+5){display:none!important;}
 
 /* CLIENTS */
-.cli-marquee{overflow:hidden;border:none!important;padding:20px 0;width:100vw;margin-left:-48px;margin-top:40px;!important;}
-.cli-track{display:flex;animation:cmq 30s linear infinite;width:max-content;border:none;width: max-content !important;}
+.cli-marquee{overflow:hidden;border:none!important;padding:20px 0;width:100vw;margin-left:-48px;margin-top:40px!important;}
+.cli-track{display:flex;animation:cmq 60s linear infinite;width:max-content!important;}
 .cli-item{padding:30px 60px;display:flex;align-items:center;justify-content:center;border:none;transition:.3s;}
 .cli-item img{height:44px;filter:grayscale(100%);opacity:1;transition:filter 0.3s ease,opacity 0.3s ease;}
 .cli-item:hover img{filter:grayscale(0%);opacity:1;}
 @keyframes cmq{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
-.cli-marquee {
-  /* [체크 3] 화면 밖으로 나가는 복사본 로고들을 숨겨줘야 합니다 */
-  overflow: hidden; 
-  width: 100vw;
-}
-.cli-track {
-  display: flex;
-  /* [체크 1] 이 코드가 반드시 있어야 로고가 일렬로 유지됩니다 */
-  width: max-content; 
-  animation: cmq 60s linear infinite;
-}
+
 /* CONTACT */
 #contact{display:grid;grid-template-columns:1.2fr 0.8fr;gap:80px;align-items:flex-start;min-height:auto!important;padding-bottom:100px!important;border-top:none!important;}
 #contact .grad{background:linear-gradient(90deg,var(--o) 0%,var(--r) 100%)!important;-webkit-background-clip:text!important;-webkit-text-fill-color:transparent!important;}
@@ -181,57 +175,49 @@ footer p{font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:2px;}
 
 /* ─── MOBILE ─── */
 @media(max-width:768px){
-  body{cursor:auto;letter-spacing:-0.02em!important;}
+  body{cursor:auto;letter-spacing:0em!important;}
   .cur,.cur-r{display:none;}
   .section{padding:60px 24px!important;}
   #about,#services{padding-top:30px!important;padding-bottom:30px!important;}
   #contact{padding-bottom:60px!important;}
 
-  /* NAV */
   nav{padding:28px 24px!important;justify-content:space-between!important;background:linear-gradient(to bottom,rgba(10,10,12,0.8),transparent);}
   .logo img{height:34px!important;}
   .nav-r{gap:0!important;margin-left:0!important;}
   .nav-r a:not(.nav-cta){display:none;}
-  .nav-cta{padding:10px 16px!important;font-size:11px!important;letter-spacing:1px!important;font-weight:600!important;border:1.5px solid rgba(255,255,255,0.3)!important;}
+  .nav-cta{padding:10px 16px!important;font-size:11px!important;letter-spacing:0px!important;font-weight:600!important;border:1.5px solid rgba(255,255,255,0.3)!important;}
 
-  /* HERO */
   #hero{padding:0 24px 50px;min-height:600px;}
   .hero-content .tag{font-size:9px;letter-spacing:3px;margin-bottom:20px;}
-  .hero-h .ln{font-size:clamp(40px,12vw,72px)!important;letter-spacing:-2px;}
+  .hero-h .ln{font-size:clamp(40px,12vw,72px)!important;letter-spacing:0px;}
   .hero-foot{flex-direction:column;align-items:flex-start;gap:24px;margin-top:32px;}
   .hero-desc{font-size:15px!important;line-height:1.6!important;margin-top:28px!important;max-width:100%!important;}
 
-  /* MARQUEE */
   .title-bar{padding:32px 0;}
-  .title-track .item{font-size:36px;padding:0 18px;letter-spacing:-1px;}
+  .title-track .item{font-size:36px;padding:0 18px;letter-spacing:0px;}
   .star{font-size:18px;margin:0 4px;}
 
-  /* ABOUT */
   #about{grid-template-columns:1fr;gap:32px;margin-top:60px!important;}
   .about-r{padding-top:0;}
   .about-p{font-size:15px;margin-bottom:36px;}
-  .quote{font-size:32px;letter-spacing:-1px;}
+  .quote{font-size:32px;letter-spacing:0px;}
 
-  /* TITLES */
-  .section-title{font-size:36px!important;letter-spacing:1px!important;}
+  .section-title{font-size:36px!important;letter-spacing:0px!important;}
   .tag{font-size:9px;letter-spacing:4px;margin-bottom:20px;}
-  .hero-h .ln,.section-title,.contact-h2{letter-spacing:-0.03em!important;word-break:keep-all;}
-  .hero-desc,.about-p,.svc-ko,.desc-gray,.vl{letter-spacing:-0.01em!important;line-height:1.6;}
-  .tag,.nav-r,.svc-num,.lb{letter-spacing:0.1em!important;text-transform:uppercase;}
+  .hero-h .ln,.section-title,.contact-h2{letter-spacing:0em!important;word-break:keep-all;}
+  .hero-desc,.about-p,.svc-ko,.desc-gray,.vl{letter-spacing:0em!important;line-height:1.6;}
+  .tag,.nav-r,.svc-num,.lb{letter-spacing:0em!important;text-transform:uppercase;}
 
-  /* SERVICES */
   .svc-head{margin-top:80px!important;margin-bottom:48px!important;display:block!important;}
   .svc-row{grid-template-columns:50px 1fr 30px;gap:14px;padding:32px 0;}
   .svc-row .svc-ko{display:none;}
-  .svc-en{font-size:30px;letter-spacing:-0.02em!important;}
+  .svc-en{font-size:30px;letter-spacing:0em!important;}
   .svc-num{font-size:11px;}
   .svc-arr{font-size:20px;}
 
-  /* BIG WORD */
   .big-word-section{padding:90px 24px;}
-  .big-word-inner h2{font-size:54px;letter-spacing:-2px;margin-bottom:32px;}
+  .big-word-inner h2{font-size:54px;letter-spacing:0px;margin-bottom:32px;}
 
-  /* WORKS */
   .works-head{margin-bottom:48px!important;}
   .wgrid{grid-template-columns:1fr!important;gap:16px!important;}
   .wcard{aspect-ratio:16/9!important;}
@@ -239,28 +225,24 @@ footer p{font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:2px;}
   .orange-line{margin-bottom:16px!important;}
   .wcard-inner h3{font-size:20px!important;line-height:1.4!important;}
 
-  /* CLIENTS */
   .cli-marquee{margin-left:-24px!important;width:calc(100% + 48px)!important;margin-top:40px!important;padding:30px 0!important;}
   .cli-item{padding:0 20px!important;}
   .cli-item img{height:30px!important;}
 
-  /* CONTACT */
   #contact{grid-template-columns:1fr;gap:48px;min-height:auto;}
-  .contact-h2{font-size:48px!important;letter-spacing:-2px!important;white-space:normal;margin-top:0;}
+  .contact-h2{font-size:36px!important;letter-spacing:0px!important;white-space:normal;margin-top:0;}
   .contact-l .mail{font-size:15px;}
   .mail-wrap{margin-top:32px;}
   .cinfo{padding:24px 0;}
 
-  /* FOOTER */
   footer{padding:36px 24px;}
   footer p{font-size:10px;letter-spacing:1px;text-align:center;}
 }
 
-/* ─── SMALL MOBILE ─── */
 @media(max-width:480px){
   .hero-h .ln{font-size:48px!important;}
   .section-title{font-size:36px!important;}
-  .big-word-inner h2{font-size:42px;letter-spacing:-1.5px;}
+  .big-word-inner h2{font-size:42px;letter-spacing:0px;}
 }
 </style>
 </head>
@@ -329,26 +311,26 @@ footer p{font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:2px;}
 
 <section id="about" class="section">
   <div class="about-l rv">
-    <p class="tag line-tag">About</p>
+    <p class="tag line-tag sr">About</p>
     <h2 class="section-title"><span class="tit-mask"><span>Different by <span class="grad">Design.</span></span></span></h2>
   </div>
   <div class="about-r rv d1">
-    <p class="about-p desc-gray">최적화된 데이터 기반으로<br>효과적인 마케팅 솔루션을 설계합니다.</p>
-    <p class="quote">More Than<br>A Project<br><span>Partnership.</span></p>
+    <p class="about-p desc-gray sr">최적화된 데이터 기반으로<br>효과적인 마케팅 솔루션을 설계합니다.</p>
+    <p class="quote sr">More Than<br>A Project<br><span>Partnership.</span></p>
   </div>
 </section>
 
 <section id="services" class="section">
   <div class="svc-head rv">
-    <p class="tag line-tag">Services</p>
+    <p class="tag line-tag sr">Services</p>
     <h2 class="section-title"><span class="tit-mask"><span>What we <span class="grad">Do.</span></span></span></h2>
   </div>
   <div class="svc-list">
-    <a class="svc-row" data-h><span class="svc-num">/ 01</span><span class="svc-en">Strategy</span><span class="svc-ko desc-gray">브랜드 자산이 강화될 수 있도록 지속 가능한 성장을 만듭니다.</span><span class="svc-arr">↗</span></a>
-    <a class="svc-row" data-h><span class="svc-num">/ 02</span><span class="svc-en">Planning</span><span class="svc-ko desc-gray">명확한 전략과 기획으로지속 가능한 방향성을 설계합니다.</span><span class="svc-arr">↗</span></a>
-    <a class="svc-row" data-h><span class="svc-num">/ 03</span><span class="svc-en">Execution</span><span class="svc-ko desc-gray">강력한 실행력으로 콘텐츠를 완성하고 성과로 이어지는 운영을 만듭니다.</span><span class="svc-arr">↗</span></a>
-    <a class="svc-row" data-h><span class="svc-num">/ 04</span><span class="svc-en">Commerce</span><span class="svc-ko desc-gray">실질적인 커머스 운영까지 책임지며 성과로 이어지는 가치를 만듭니다.</span><span class="svc-arr">↗</span></a>
-    <a class="svc-row" data-h><span class="svc-num">/ 05</span><span class="svc-en">Big Data</span><span class="svc-ko desc-gray">데이터 기반의 인사이트로 변화를 만드는 전략을 제안합니다.</span><span class="svc-arr">↗</span></a>
+    <a class="svc-row sr" data-h><span class="svc-num">/ 01</span><span class="svc-en">Strategy</span><span class="svc-ko desc-gray">브랜드 자산이 강화될 수 있도록 지속 가능한 성장을 만듭니다.</span><span class="svc-arr">↗</span></a>
+    <a class="svc-row sr" data-h><span class="svc-num">/ 02</span><span class="svc-en">Planning</span><span class="svc-ko desc-gray">명확한 전략과 기획으로지속 가능한 방향성을 설계합니다.</span><span class="svc-arr">↗</span></a>
+    <a class="svc-row sr" data-h><span class="svc-num">/ 03</span><span class="svc-en">Execution</span><span class="svc-ko desc-gray">강력한 실행력으로 콘텐츠를 완성하고 성과로 이어지는 운영을 만듭니다.</span><span class="svc-arr">↗</span></a>
+    <a class="svc-row sr" data-h><span class="svc-num">/ 04</span><span class="svc-en">Commerce</span><span class="svc-ko desc-gray">실질적인 커머스 운영까지 책임지며 성과로 이어지는 가치를 만듭니다.</span><span class="svc-arr">↗</span></a>
+    <a class="svc-row sr" data-h><span class="svc-num">/ 05</span><span class="svc-en">Big Data</span><span class="svc-ko desc-gray">데이터 기반의 인사이트로 변화를 만드는 전략을 제안합니다.</span><span class="svc-arr">↗</span></a>
   </div>
 </section>
 
@@ -366,24 +348,24 @@ footer p{font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:2px;}
 
 <section id="works" class="section">
   <div class="works-head rv">
-    <p class="tag line-tag">Works</p>
+    <p class="tag line-tag sr">Works</p>
     <h2 class="section-title"><span class="tit-mask"><span>Recent <span class="grad">Project.</span></span></span></h2>
   </div>
   <div class="wgrid rv d1">
-    <div class="wcard" data-h><div class="wbg"></div><div class="wcard-inner"><div class="orange-line"></div><h3>TV CF</h3><p class="desc-gray">클라이언트  클라이언트  클리이언트</p></div></div>
-    <div class="wcard" data-h><div class="wbg"></div><div class="wcard-inner"><div class="orange-line"></div><h3>바이럴 콘텐츠</h3><p class="desc-gray">클라이언트  클라이언트  클리이언트</p></div></div>
-    <div class="wcard" data-h><div class="wbg"></div><div class="wcard-inner"><div class="orange-line"></div><h3>모션 그래픽</h3><p class="desc-gray">클라이언트  클라이언트  클리이언트</p></div></div>
-    <div class="wcard" data-h><div class="wbg"></div><div class="wcard-inner"><div class="orange-line"></div><h3>SNS 마케팅</h3><p class="desc-gray">클라이언트  클라이언트  클리이언트</p></div></div>
-    <div class="wcard" data-h><div class="wbg"></div><div class="wcard-inner"><div class="orange-line"></div><h3>SK매직<br>연간 디지털 캠페인</h3><p class="desc-gray">SK매직</p></div><div class="warr">↗</div></div>
-    <div class="wcard" data-h><div class="wbg"></div><div class="wcard-inner"><div class="orange-line"></div><h3>글램팜<br>인스타그램 채널 운영</h3><p class="desc-gray">글램팜</p></div><div class="warr">↗</div></div>
-    <div class="wcard" data-h><div class="wbg"></div><div class="wcard-inner"><div class="orange-line"></div><h3>커블 800만개<br>디지털 퍼포먼스</h3><p class="desc-gray">커블</p></div><div class="warr">↗</div></div>
-    <div class="wcard" data-h><div class="wbg"></div><div class="wcard-inner"><div class="orange-line"></div><h3>스릭슨 브레이브<br>챔피언십 홍보</h3><p class="desc-gray">스릭슨</p></div><div class="warr">↗</div></div>
+    <div class="wcard sr" data-h><div class="wbg"></div><div class="wcard-inner"><div class="orange-line"></div><h3>TV CF</h3><p class="desc-gray">비타500&nbsp;&nbsp;&nbsp;&nbsp;SK magic&nbsp;&nbsp;&nbsp;&nbsp;LG U+</p></div></div>
+    <div class="wcard sr" data-h><div class="wbg"></div><div class="wcard-inner"><div class="orange-line"></div><h3>바이럴 콘텐츠</h3><p class="desc-gray">금호타이어&nbsp;&nbsp;&nbsp;&nbsp;Kwangdong&nbsp;&nbsp;&nbsp;&nbsp;이노션</p></div></div>
+    <div class="wcard sr" data-h><div class="wbg"></div><div class="wcard-inner"><div class="orange-line"></div><h3>모션 그래픽</h3><p class="desc-gray">금호타이어&nbsp;&nbsp;&nbsp;&nbsp;LG U+&nbsp;&nbsp;&nbsp;&nbsp;에코그램</p></div></div>
+    <div class="wcard sr" data-h><div class="wbg"></div><div class="wcard-inner"><div class="orange-line"></div><h3>SNS 마케팅</h3><p class="desc-gray">비타500&nbsp;&nbsp;&nbsp;&nbsp;LG U+&nbsp;&nbsp;&nbsp;&nbsp;Curble</p></div></div>
+    <div class="wcard sr" data-h><div class="wbg"></div><div class="wcard-inner"><div class="orange-line"></div><h3>SK매직<br>연간 디지털 캠페인</h3><p class="desc-gray">SK매직</p></div><div class="warr">↗</div></div>
+    <div class="wcard sr" data-h><div class="wbg"></div><div class="wcard-inner"><div class="orange-line"></div><h3>글램팜<br>인스타그램 채널 운영</h3><p class="desc-gray">글램팜</p></div><div class="warr">↗</div></div>
+    <div class="wcard sr" data-h><div class="wbg"></div><div class="wcard-inner"><div class="orange-line"></div><h3>커블 800만개<br>디지털 퍼포먼스</h3><p class="desc-gray">커블</p></div><div class="warr">↗</div></div>
+    <div class="wcard sr" data-h><div class="wbg"></div><div class="wcard-inner"><div class="orange-line"></div><h3>스릭슨 브레이브<br>챔피언십 홍보</h3><p class="desc-gray">스릭슨</p></div><div class="warr">↗</div></div>
   </div>
 </section>
 
 <section id="clients" class="section">
   <div class="clients-head rv">
-    <p class="tag line-tag">Trusted by</p>
+    <p class="tag line-tag sr">Trusted by</p>
     <h2 class="section-title"><span class="tit-mask"><span>Our <span class="grad">Clients.</span></span></span></h2>
   </div>
   <div class="cli-marquee rv d1">
@@ -406,11 +388,11 @@ footer p{font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:2px;}
 
 <section id="contact" class="section">
   <div class="contact-l rv">
-    <p class="tag line-tag">For long-term work</p>
+    <p class="tag line-tag sr">For long-term work</p>
     <h2 class="contact-h2 section-title">
       <span class="tit-mask"><span class="grad">Contact</span> <span>Us.</span></span>
     </h2>
-    <div class="mail-wrap">
+    <div class="mail-wrap sr">
       <a href="mailto:info@cocs.co.kr" class="mail" data-h>
         info@cocs.co.kr
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
@@ -418,9 +400,9 @@ footer p{font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:2px;}
     </div>
   </div>
   <div class="contact-r rv d1">
-    <div class="cinfo"><p class="lb">Studio</p><p class="vl desc-gray">서울 강남구 영동대로 86길 10-6 2F</p></div>
-    <div class="cinfo"><p class="lb">Tel</p><p class="vl desc-gray">070-4190-8758</p></div>
-    <div class="cinfo"><p class="lb">Email</p><p class="vl desc-gray">info@cocs.co.kr</p></div>
+    <div class="cinfo sr"><p class="lb">Studio</p><p class="vl desc-gray">서울 강남구 영동대로 86길 10-6 2F</p></div>
+    <div class="cinfo sr"><p class="lb">Tel</p><p class="vl desc-gray">070-4190-8758</p></div>
+    <div class="cinfo sr"><p class="lb">Email</p><p class="vl desc-gray">info@cocs.co.kr</p></div>
   </div>
 </section>
 
@@ -438,13 +420,24 @@ function loop(){rx+=(mx-rx)*0.18;ry+=(my-ry)*0.18;curR.style.left=rx+'px';curR.s
 loop();
 document.querySelectorAll('[data-h]').forEach(el=>{el.addEventListener('mouseenter',()=>curR.classList.add('hov'));el.addEventListener('mouseleave',()=>curR.classList.remove('hov'));});
 
-// Reveal
+// Reveal (.rv)
 const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');e.target.querySelectorAll('.tit-mask').forEach(m=>m.classList.add('on'));}});},{threshold:0.12});
 document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
 
-// Section title staggered reveal
+// Staggered title mask reveal
 const textRevealObserver=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.querySelectorAll('.tit-mask').forEach((mask,i)=>{setTimeout(()=>{mask.classList.add('on');},i*150);});textRevealObserver.unobserve(entry.target);}});},{threshold:0.15});
 document.querySelectorAll('.section').forEach(sec=>textRevealObserver.observe(sec));
+
+// Scroll reveal (.sr) — 순차적으로 올라오는 효과
+const srObs=new IntersectionObserver(es=>{
+  const visible=es.filter(e=>e.isIntersecting);
+  visible.sort((a,b)=>a.boundingClientRect.top-b.boundingClientRect.top);
+  visible.forEach((e,i)=>{
+    setTimeout(()=>{e.target.classList.add('on');},i*120);
+    srObs.unobserve(e.target);
+  });
+},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.sr').forEach(el=>srObs.observe(el));
 </script>
 </body>
 </html>
