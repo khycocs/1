@@ -228,7 +228,15 @@ footer p{font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:2px;}
   .cli-marquee{margin-left:-24px!important;width:calc(100% + 48px)!important;margin-top:40px!important;padding:30px 0!important;}
   .cli-item{padding:0 20px!important;}
   .cli-item img{height:30px!important;}
-
+.cli-track {
+  display: flex;
+  width: max-content !important;
+  
+  /* [수정 포인트] 60s를 더 낮은 숫자로 변경하세요 */
+  animation: cmq 40s linear infinite; 
+  
+  will-change: transform;
+}
   #contact{grid-template-columns:1fr;gap:48px;min-height:auto;}
   .contact-h2{font-size:36px!important;letter-spacing:0px!important;white-space:normal;margin-top:0;}
   .contact-l .mail{font-size:15px;}
