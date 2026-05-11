@@ -327,29 +327,7 @@ footer {
   .nav-cta{padding:8px 16px;}
   
   .section{padding:90px 24px;}
-  /* 1. 리스트 줄 전체 색상 변화 */
-.svc-row {
-  transition: color 0.3s ease; /* 색상이 부드럽게 변하도록 설정 */
-}
-
-/* 2. 터치(오버) 시 발생하는 이벤트 */
-.svc-row:active, 
-.svc-row:hover {
-  color: var(--o) !important; /* 전체 글자색 오렌지로 변경 */
-}
-
-/* 3. 터치 시 화살표와 영문 텍스트 미세 움직임 (인터렉션) */
-.svc-row:active .svc-en, 
-.svc-row:hover .svc-en {
-  transform: translateX(5px); /* 오른쪽으로 살짝 이동 */
-  color: var(--o);
-}
-
-.svc-row:active .svc-arr, 
-.svc-row:hover .svc-arr {
-  transform: translate(5px, -5px); /* 우측 상단으로 이동 */
-  color: var(--o);
-}
+  
   /* HERO mobile */
   #hero{padding:0 24px 50px;min-height:600px;}
   .yt-frame{height:100vh;min-height:100vh;min-width:177vh;}
@@ -797,6 +775,29 @@ nav {
     text-transform: uppercase;
     border: 1.5px solid rgba(255,255,255,0.3) !important; /* 선 두께를 살짝 키워 선명도 확보 */
   }
+}
+/* 1. 리스트 줄 전체 색상 변화 */
+.svc-row {
+  transition: color 0.3s ease; /* 색상이 부드럽게 변하도록 설정 */
+}
+
+/* 2. 터치(오버) 시 발생하는 이벤트 */
+.svc-row:active, 
+.svc-row:hover {
+  color: var(--o) !important; /* 전체 글자색 오렌지로 변경 */
+}
+
+/* 3. 터치 시 화살표와 영문 텍스트 미세 움직임 (인터렉션) */
+.svc-row:active .svc-en, 
+.svc-row:hover .svc-en {
+  transform: translateX(5px); /* 오른쪽으로 살짝 이동 */
+  color: var(--o);
+}
+
+.svc-row:active .svc-arr, 
+.svc-row:hover .svc-arr {
+  transform: translate(5px, -5px); /* 우측 상단으로 이동 */
+  color: var(--o);
 }
 /* 클라이언트 영역 위아래 선 강제 삭제 */
 .cli-marquee { border-top: none !important; border-bottom: none !important; }
