@@ -584,6 +584,79 @@ footer {
     max-width: 100% !important;
   }
 }
+/* 클라이언트 섹션 제목과 로고 사이 여백 조정 */
+.cli-marquee {
+  overflow: hidden;
+  padding: 20px 0;
+  width: 100vw;
+  margin-left: -48px;
+  
+  /* 1. 상단 여백을 대폭 늘려 제목과 거리를 둡니다 (기존 0 -> 120px) */
+  margin-top: 40px !important; 
+  
+  /* 기존 선 삭제 설정 유지 */
+  border-top: none !important; 
+  border-bottom: none !important;
+}
+
+/* 모바일 전용 (모바일에서도 답답하지 않게 조정) */
+@media (max-width: 768px) {
+  .cli-marquee {
+    margin-top: 40px !important; /* 모바일은 화면 비례상 60px이 적당합니다 */
+    margin-left: -24px !important;
+    width: calc(100% + 48px) !important;
+  }
+}
+/* 상단 네비게이션 정렬 수정 */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 500;
+  padding: 36px 48px;
+  display: flex;
+  
+  /* 1. space-between을 지우고 flex-start로 변경 (좌측 정렬) */
+  justify-content: flex-start; 
+  align-items: center;
+}
+
+.nav-r {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 36px; /* 메뉴 간격은 유지 */
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  align-items: center;
+
+  /* 2. 로고와 메뉴 사이의 간격 설정 (로고 바로 옆에서 얼마나 띄울지) */
+  margin-left: 60px !important; 
+}
+
+/* 3. 모바일에서는 기존처럼 유지하거나 간격 조정 */
+@media (max-width: 768px) {
+  nav {
+    justify-content: space-between !important; /* 모바일은 좁아서 찢어두는 게 낫습니다 */
+  }
+  .nav-r {
+    margin-left: 0 !important;
+  }
+}
+/* 기존 tit-mask span 부분만 이걸로 교체하세요 */
+.tit-mask span {
+  display: inline-block;
+  transform: translateY(115%); /* 약간 더 아래에서 시작 */
+  /* 쫀득한 텐션감이 있는 베지어 곡선 (고급형) */
+  transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* 활성화되었을 때 */
+.tit-mask.on span {
+  transform: translateY(0) !important;
+}
 /* 클라이언트 영역 위아래 선 강제 삭제 */
 .cli-marquee { border-top: none !important; border-bottom: none !important; }
 #contact { border-top: none !important; }
@@ -672,7 +745,7 @@ footer {
 <section id="services" class="section">
   <div class="svc-head rv">
     <p class="tag line-tag">Services</p>
-    <h2 class="section-title"><span class="tit-mask"><span>What we <span class="grad">DO.</span></span></span></h2>
+    <h2 class="section-title"><span class="tit-mask"><span>What we <span class="grad">Do.</span></span></span></h2>
   </div>
   <div class="svc-list">
     <a class="svc-row" data-h><span class="svc-num">/ 01</span><span class="svc-en">Strategy</span><span class="svc-ko desc-gray">브랜드 자산이 강화될 수 있도록 지속 가능한 성장을 만듭니다.</span><span class="svc-arr">↗</span></a>
@@ -722,41 +795,41 @@ footer {
     <div class="cli-track">
       <div class="cli-item">
   <img src="img/kakao.png" alt="KAKAO"
-       style="height:44px;opacity:1;"></div>
+       style="height:38px;opacity:1;"></div>
         <div class="cli-item">
            
   <img src="img/naver.png" alt="네이버웹툰"
-       style="height:44px;opacity:1;"></div>
+       style="height:38px;opacity:1;"></div>
         <div class="cli-item">
   <img src="img/u+.png" alt="LG U+"
-       style="height:44px;opacity:1;"></div>
+       style="height:38px;opacity:1;"></div>
         <div class="cli-item">
   <img src="img/sk.png" alt="SK매직"
-       style="height:44px;opacity:1;"></div>
+       style="height:38px;opacity:1;"></div>
         <div class="cli-item">
   <img src="img/fro.png" alt="프로쉬"
-       style="height:44px;opacity:1;"></div>
+       style="height:38px;opacity:1;"></div>
         <div class="cli-item">
   <img src="img/gc.png" alt="GC녹십자웰빙"
-       style="height:44px;opacity:1;"></div>
+       style="height:38px;opacity:1;"></div>
         <div class="cli-item">
   <img src="img/cur.png" alt="커블"
-       style="height:44px;opacity:1;"></div>
+       style="height:38px;opacity:1;"></div>
         <div class="cli-item">
   <img src="img/kwang.png" alt="광동옥수수수염차"
-       style="height:44px;opacity:1;"></div>
+       style="height:38px;opacity:1;"></div>
         <div class="cli-item">
   <img src="img/kum.png" alt="금호타이어"
-       style="height:44px;opacity:1;"></div>
+       style="height:38px;opacity:1;"></div>
         <div class="cli-item">
   <img src="img/glam.png" alt="글램팜"
-       style="height:44px;opacity:1;"></div>
+       style="height:38px;opacity:1;"></div>
         <div class="cli-item">
   <img src="img/500.png" alt="비타500"
-       style="height:44px;opacity:1;"></div>
+       style="height:38px;opacity:1;"></div>
         <div class="cli-item">
   <img src="img/ske.png" alt="SK edoplant"
-       style="height:44px;opacity:1;"></div>
+       style="height:38px;opacity:1;"></div>
   </div>
 </section>
 
@@ -764,7 +837,7 @@ footer {
   <div class="contact-l rv">
     <p class="tag line-tag">For long-term work</p>
     <h2 class="contact-h2 section-title">
-      <span class="tit-mask"><span class="grad">Contact</span> <span>US.</span></span>
+      <span class="tit-mask"><span class="grad">Contact</span> <span>Us.</span></span>
     </h2>
     <div class="mail-wrap">
       <a href="mailto:info@cocs.co.kr" class="mail" data-h>
@@ -785,7 +858,6 @@ footer {
     <p>Copyrights © 2026 COCS INTERACTIVE. ALL RIGHTS RESERVED.</p>
   </div>
 </footer>
-
 <script>
 const cur = document.querySelector('.cur'), curR = document.querySelector('.cur-r');
 let mx = 0, my = 0, rx = 0, ry = 0;
@@ -817,6 +889,28 @@ const obs = new IntersectionObserver(es => {
 
 document.querySelectorAll('.rv').forEach(el => obs.observe(el));
 
+// 기존 IntersectionObserver 코드를 아래 내용으로 교체
+const textRevealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      // 해당 섹션 내의 모든 tit-mask들을 찾음
+      const masks = entry.target.querySelectorAll('.tit-mask');
+      
+      masks.forEach((mask, index) => {
+        // 0.15초 간격으로 순차적으로 'on' 클래스 부여
+        setTimeout(() => {
+          mask.classList.add('on');
+        }, index * 150); 
+      });
+      
+      // 한 번 등장하면 다시 관찰할 필요 없으므로 해제 (성능 최적화)
+      textRevealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+
+// 모든 섹션을 관찰 대상으로 등록
+document.querySelectorAll('.section').forEach(sec => textRevealObserver.observe(sec));
 
 </script>
 </body>
