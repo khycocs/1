@@ -13,6 +13,17 @@
 html{scroll-behavior:smooth;}
 body{background:var(--dk);color:#fff;font-family:'Roboto','Pretendard',sans-serif;overflow-x:hidden;cursor:none;width:100%;}
 
+/* ── SCROLL PROGRESS BAR ── */
+#scroll-bar{position:fixed;top:0;left:0;height:2px;width:0%;background:linear-gradient(90deg,var(--r),var(--o),var(--g));z-index:9999;transition:width 0.05s linear;pointer-events:none;}
+
+/* ── FILM GRAIN CANVAS ── */
+#grain-canvas{position:fixed;inset:0;pointer-events:none;z-index:8000;opacity:0;transition:opacity 0.1s;}
+
+
+
+/* ── CURSOR TRAIL ── */
+.trail-dot{position:fixed;width:5px;height:5px;border-radius:50%;background:var(--o);pointer-events:none;z-index:9997;transform:translate(-50%,-50%);transition:opacity 0.4s;}
+
 /* LAYOUT */
 .section{display:block;padding:80px 48px!important;width:100%;max-width:100vw;position:relative;overflow:visible;}
 #about{padding-bottom:40px!important;margin-top:140px!important;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
@@ -32,7 +43,7 @@ body{background:var(--dk);color:#fff;font-family:'Roboto','Pretendard',sans-seri
 .tit-mask span{display:inline-block;transform:translateY(115%);transition:transform 1.2s cubic-bezier(0.19,1,0.22,1);padding-bottom:0.2em!important;line-height:1.2!important;}
 .tit-mask.on span{transform:translateY(0)!important;}
 
-/* SCROLL REVEAL - 스크롤 시 올라오는 효과 */
+/* SCROLL REVEAL */
 .sr{opacity:0;transform:translateY(50px);transition:opacity 0.8s cubic-bezier(0.19,1,0.22,1),transform 0.8s cubic-bezier(0.19,1,0.22,1);}
 .sr.on{opacity:1;transform:translateY(0);}
 
@@ -75,6 +86,12 @@ nav::before{content:'';position:absolute;inset:0;background:linear-gradient(rgba
 @keyframes slide{0%{left:-24px;}100%{left:60px;}}
 @keyframes fu{from{opacity:0;transform:translateY(36px);}to{opacity:1;transform:none;}}
 
+/* ── GLITCH TEXT ── */
+.glitch-wrap{position:relative;display:inline-block;}
+.glitch-wrap .g-clone{position:absolute;top:0;left:0;width:100%;height:100%;display:inline-block;font-weight:900;font-size:inherit;letter-spacing:inherit;line-height:inherit;pointer-events:none;opacity:0;}
+.glitch-wrap .g-clone.r{color:var(--r);mix-blend-mode:screen;}
+.glitch-wrap .g-clone.b{color:#00eaff;mix-blend-mode:screen;}
+
 /* TITLE BAR MARQUEE */
 .title-bar{overflow:hidden;padding:48px 0;background:#070709;border:none;}
 .title-track{display:flex;width:max-content;animation:mq 60s linear infinite;white-space:nowrap;align-items:center;}
@@ -104,7 +121,7 @@ nav::before{content:'';position:absolute;inset:0;background:linear-gradient(rgba
 /* SERVICES */
 .svc-head{margin-top:160px!important;margin-bottom:80px!important;display:block;}
 .svc-list{border-top:1px solid rgba(255,255,255,.08);}
-.svc-row{display:grid;grid-template-columns:80px 1fr 1.5fr 40px;gap:48px;padding:52px 0;border-bottom:1px solid rgba(255,255,255,.08);align-items:center;text-decoration:none;color:inherit;transition:all 0.3s ease;cursor:none;-webkit-tap-highlight-color:transparent;outline:none;}
+.svc-row{display:grid;grid-template-columns:80px 1fr 1.5fr 40px;gap:48px;padding:52px 0;border-bottom:1px solid rgba(255,255,255,.08);align-items:center;text-decoration:none;color:inherit;transition:all 0.3s ease;cursor:none;-webkit-tap-highlight-color:transparent;outline:none;position:relative;}
 .svc-row:hover .svc-en,.svc-row:active .svc-en,.svc-row:focus .svc-en{transform:translateX(8px);color:var(--o);}
 .svc-row:hover .svc-arr,.svc-row:active .svc-arr,.svc-row:focus .svc-arr{transform:translate(8px,-8px);color:var(--o);}
 .svc-row:active,.svc-row:focus{background:rgba(244,121,32,0.05);}
@@ -112,6 +129,10 @@ nav::before{content:'';position:absolute;inset:0;background:linear-gradient(rgba
 .svc-en{font-weight:900;font-size:clamp(32px,5vw,72px);letter-spacing:0px;line-height:1.1;padding-bottom:.05em;transition:.4s;}
 .svc-ko{font-size:14px;line-height:1.8;}
 .svc-arr{font-size:28px;text-align:right;color:rgba(255,255,255,.4);transition:.4s;display:inline-block;}
+
+/* ── ROW SPOTLIGHT (Services) ── */
+.svc-list:hover .svc-row{opacity:0.15;}
+.svc-list:hover .svc-row:hover{opacity:1;}
 
 /* WORKS */
 .works-head{margin-bottom:60px!important;}
@@ -128,7 +149,14 @@ nav::before{content:'';position:absolute;inset:0;background:linear-gradient(rgba
 .wbg{position:absolute;inset:0;z-index:0!important;}
 .wcard::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.85) 0%,rgba(0,0,0,0.1) 60%);z-index:1!important;}
 .wcard-inner{position:absolute;inset:0;z-index:2!important;padding:32px!important;display:flex!important;flex-direction:column!important;justify-content:flex-end!important;align-items:flex-start!important;}
-.orange-line{display:block!important;width:24px!important;height:2px!important;background:var(--o)!important;margin-bottom:24px!important;opacity:1!important;visibility:visible!important;}
+/* ── WORKS CARD STAGGER REVEAL ── */
+.wcard-inner .orange-line,
+.wcard-inner h3,
+.wcard-inner p{
+  opacity:1;
+  transform:none;
+  transition:opacity 0.38s ease, transform 0.38s cubic-bezier(0.19,1,0.22,1);
+}
 .wcard-inner h3{font-weight:900;font-size:clamp(20px,1.6vw,24px)!important;line-height:1.5!important;letter-spacing:-0.5px!important;margin-bottom:12px!important;}
 .wcard-inner p{font-size:13px!important;letter-spacing:1px;line-height:1.6!important;opacity:0.7;}
 .warr{position:absolute;top:32px;right:32px;width:42px;height:42px;border:1px solid rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:3;color:#fff;}
@@ -228,15 +256,8 @@ footer p{font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:2px;}
   .cli-marquee{margin-left:-24px!important;width:calc(100% + 48px)!important;margin-top:40px!important;padding:30px 0!important;}
   .cli-item{padding:0 20px!important;}
   .cli-item img{height:30px!important;}
-.cli-track {
-  display: flex;
-  width: max-content !important;
-  
-  /* [수정 포인트] 60s를 더 낮은 숫자로 변경하세요 */
-  animation: cmq 20s linear infinite; 
-  
-  will-change: transform;
-}
+  .cli-track{display:flex;width:max-content!important;animation:cmq 20s linear infinite;will-change:transform;}
+
   #contact{grid-template-columns:1fr;gap:48px;min-height:auto;}
   .contact-h2{font-size:36px!important;letter-spacing:0px!important;white-space:normal;margin-top:0;}
   .contact-l .mail{font-size:15px;}
@@ -252,29 +273,18 @@ footer p{font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:2px;}
   .section-title{font-size:36px!important;}
   .big-word-inner h2{font-size:42px;letter-spacing:0px;}
 }
-/* 1. 부모 박스: 영상이 튀어나가지 않게 가둠 */
-.wcard {
-  position: relative !important;
-  aspect-ratio: 16 / 9 !important; /* 팀장님이 잡으신 비율 고정 */
-  overflow: hidden !important;    /* [핵심] 이걸 넣어야 영상 가장자리가 잘려 들어갑니다 */
-  background: #0c0c10;
-  border-radius: 0;               /* 콕스 아이덴티티에 맞춰 직각 유지 */
-}
 
-/* 2. 자식 요소(영상): 박스 크기에 강제 일치 */
-.wbg {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100.5% !important;  /* 미세한 1px 흰 선 방지를 위해 0.5% 더 키움 */
-  height: 100.5% !important;
-  transform: translate(-50%, -50%); /* 정확히 정중앙 정렬 */
-  object-fit: cover !important;     /* [핵심] 박스 크기에 맞춰 영상 비율 자동 최적화 */
-  z-index: 0 !important;
-}
+.wcard{position:relative!important;aspect-ratio:16/9!important;overflow:hidden!important;background:#0c0c10;border-radius:0;}
+.wbg{position:absolute;top:50%;left:50%;width:100.5%!important;height:100.5%!important;transform:translate(-50%,-50%);object-fit:cover!important;z-index:0!important;}
 </style>
 </head>
 <body>
+
+<!-- SCROLL PROGRESS BAR -->
+<div id="scroll-bar"></div>
+
+<!-- FILM GRAIN CANVAS -->
+<canvas id="grain-canvas"></canvas>
 
 <div class="cur"></div>
 <div class="cur-r"></div>
@@ -301,9 +311,9 @@ footer p{font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:2px;}
   <div class="hero-content">
     <p class="tag line-tag">COCS Interactive · Since 2021</p>
     <h1 class="hero-h">
-      <span class="ln ln1"><span class="word">More Than</span></span>
-      <span class="ln ln2"><span class="word">A Project</span></span>
-      <span class="ln ln3"><span class="word">Partnership<span class="dot">.</span></span></span>
+      <span class="ln ln1"><span class="word glitch-wrap" data-glitch="More Than">More Than<span class="g-clone r">More Than</span><span class="g-clone b">More Than</span></span></span>
+      <span class="ln ln2"><span class="word glitch-wrap" data-glitch="A Project" style="background:linear-gradient(90deg,var(--r),var(--o) 60%,var(--g));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">A Project<span class="g-clone r" style="-webkit-text-fill-color:var(--r);background:none;">A Project</span><span class="g-clone b" style="-webkit-text-fill-color:#00eaff;background:none;">A Project</span></span></span>
+      <span class="ln ln3"><span class="word glitch-wrap" data-glitch="Partnership.">Partnership<span class="dot">.</span><span class="g-clone r">Partnership.</span><span class="g-clone b">Partnership.</span></span></span>
     </h1>
     <div class="hero-foot">
       <p class="hero-desc desc-gray">브랜드의 도전을 실질적인 성과로.</p>
@@ -381,49 +391,21 @@ footer p{font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:2px;}
   </div>
   <div class="wgrid rv d1">
     <div class="wcard sr" data-h>
-  <video class="wbg" autoplay muted loop playsinline>
-    <source src="img/main.mp4" type="video/mp4">
-  </video>
-  
-  <div class="wcard-inner">
-    <div class="orange-line"></div>
-    <h3>TV CF</h3>
-    <p class="desc-gray">비타500&nbsp;&nbsp;&nbsp;&nbsp;SK magic&nbsp;&nbsp;&nbsp;&nbsp;LG U+</p>
-  </div>
-</div>
-<div class="wcard sr" data-h>
-  <video class="wbg" autoplay muted loop playsinline>
-    <source src="img/main.mp4" type="video/mp4">
-  </video>
-  
-  <div class="wcard-inner">
-    <div class="orange-line"></div>
-    <h3>바이럴 콘텐츠</h3>
-    <p class="desc-gray">금호타이어&nbsp;&nbsp;&nbsp;&nbsp;Kwangdong&nbsp;&nbsp;&nbsp;&nbsp;이노션</p>
-  </div>
-</div>
-<div class="wcard sr" data-h>
-  <video class="wbg" autoplay muted loop playsinline>
-    <source src="img/CELA.mp4" type="video/mp4">
-  </video>
-  
-  <div class="wcard-inner">
-    <div class="orange-line"></div>
-    <h3>모션 그래픽</h3>
-    <p class="desc-gray">금호타이어&nbsp;&nbsp;&nbsp;&nbsp;LG U+&nbsp;&nbsp;&nbsp;&nbsp;에코그램</p>
-  </div>
-</div>
-<div class="wcard sr" data-h>
-  <video class="wbg" autoplay muted loop playsinline>
-    <source src="img/CELA.mp4" type="video/mp4">
-  </video>
-  
-  <div class="wcard-inner">
-    <div class="orange-line"></div>
-    <h3>SNS 마케팅</h3>
-    <p class="desc-gray">비타500&nbsp;&nbsp;&nbsp;&nbsp;LG U+&nbsp;&nbsp;&nbsp;&nbsp;Curble</p>
-  </div>
-</div>
+      <video class="wbg" autoplay muted loop playsinline><source src="img/main.mp4" type="video/mp4"></video>
+      <div class="wcard-inner"><div class="orange-line"></div><h3>TV CF</h3><p class="desc-gray">비타500&nbsp;&nbsp;&nbsp;&nbsp;SK magic&nbsp;&nbsp;&nbsp;&nbsp;LG U+</p></div>
+    </div>
+    <div class="wcard sr" data-h>
+      <video class="wbg" autoplay muted loop playsinline><source src="img/main.mp4" type="video/mp4"></video>
+      <div class="wcard-inner"><div class="orange-line"></div><h3>바이럴 콘텐츠</h3><p class="desc-gray">금호타이어&nbsp;&nbsp;&nbsp;&nbsp;Kwangdong&nbsp;&nbsp;&nbsp;&nbsp;이노션</p></div>
+    </div>
+    <div class="wcard sr" data-h>
+      <video class="wbg" autoplay muted loop playsinline><source src="img/CELA.mp4" type="video/mp4"></video>
+      <div class="wcard-inner"><div class="orange-line"></div><h3>모션 그래픽</h3><p class="desc-gray">금호타이어&nbsp;&nbsp;&nbsp;&nbsp;LG U+&nbsp;&nbsp;&nbsp;&nbsp;에코그램</p></div>
+    </div>
+    <div class="wcard sr" data-h>
+      <video class="wbg" autoplay muted loop playsinline><source src="img/CELA.mp4" type="video/mp4"></video>
+      <div class="wcard-inner"><div class="orange-line"></div><h3>SNS 마케팅</h3><p class="desc-gray">비타500&nbsp;&nbsp;&nbsp;&nbsp;LG U+&nbsp;&nbsp;&nbsp;&nbsp;Curble</p></div>
+    </div>
     <div class="wcard sr" data-h><div class="wbg"></div><div class="wcard-inner"><div class="orange-line"></div><h3>SK매직<br>연간 디지털 캠페인</h3><p class="desc-gray">SK매직</p></div><div class="warr">↗</div></div>
     <div class="wcard sr" data-h><div class="wbg"></div><div class="wcard-inner"><div class="orange-line"></div><h3>글램팜<br>인스타그램 채널 운영</h3><p class="desc-gray">글램팜</p></div><div class="warr">↗</div></div>
     <div class="wcard sr" data-h><div class="wbg"></div><div class="wcard-inner"><div class="orange-line"></div><h3>커블 800만개<br>디지털 퍼포먼스</h3><p class="desc-gray">커블</p></div><div class="warr">↗</div></div>
@@ -438,6 +420,19 @@ footer p{font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:2px;}
   </div>
   <div class="cli-marquee rv d1">
     <div class="cli-track">
+      <div class="cli-item"><img src="img/kakao.png" alt="KAKAO" style="height:38px;opacity:1;"></div>
+      <div class="cli-item"><img src="img/naver.png" alt="네이버웹툰" style="height:38px;opacity:1;"></div>
+      <div class="cli-item"><img src="img/u+.png" alt="LG U+" style="height:38px;opacity:1;"></div>
+      <div class="cli-item"><img src="img/sk.png" alt="SK매직" style="height:38px;opacity:1;"></div>
+      <div class="cli-item"><img src="img/fro.png" alt="프로쉬" style="height:38px;opacity:1;"></div>
+      <div class="cli-item"><img src="img/gc.png" alt="GC녹십자웰빙" style="height:38px;opacity:1;"></div>
+      <div class="cli-item"><img src="img/cur.png" alt="커블" style="height:38px;opacity:1;"></div>
+      <div class="cli-item"><img src="img/kwang.png" alt="광동옥수수수염차" style="height:38px;opacity:1;"></div>
+      <div class="cli-item"><img src="img/kum.png" alt="금호타이어" style="height:38px;opacity:1;"></div>
+      <div class="cli-item"><img src="img/glam.png" alt="글램팜" style="height:38px;opacity:1;"></div>
+      <div class="cli-item"><img src="img/500.png" alt="비타500" style="height:38px;opacity:1;"></div>
+      <div class="cli-item"><img src="img/ske.png" alt="SK ecoplant" style="height:38px;opacity:1;"></div>
+      <!-- duplicate for seamless loop -->
       <div class="cli-item"><img src="img/kakao.png" alt="KAKAO" style="height:38px;opacity:1;"></div>
       <div class="cli-item"><img src="img/naver.png" alt="네이버웹툰" style="height:38px;opacity:1;"></div>
       <div class="cli-item"><img src="img/u+.png" alt="LG U+" style="height:38px;opacity:1;"></div>
@@ -481,22 +476,313 @@ footer p{font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:2px;}
 </footer>
 
 <script>
+/* ══════════════════════════════════════════
+   1. CURSOR (original)
+══════════════════════════════════════════ */
 const cur=document.querySelector('.cur'),curR=document.querySelector('.cur-r');
 let mx=0,my=0,rx=0,ry=0;
 window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
-function loop(){rx+=(mx-rx)*0.18;ry+=(my-ry)*0.18;curR.style.left=rx+'px';curR.style.top=ry+'px';requestAnimationFrame(loop);}
-loop();
+function curLoop(){rx+=(mx-rx)*0.18;ry+=(my-ry)*0.18;curR.style.left=rx+'px';curR.style.top=ry+'px';requestAnimationFrame(curLoop);}
+curLoop();
 document.querySelectorAll('[data-h]').forEach(el=>{el.addEventListener('mouseenter',()=>curR.classList.add('hov'));el.addEventListener('mouseleave',()=>curR.classList.remove('hov'));});
 
-// Reveal (.rv)
+/* ══════════════════════════════════════════
+   2. SCROLL PROGRESS BAR
+══════════════════════════════════════════ */
+const bar=document.getElementById('scroll-bar');
+window.addEventListener('scroll',()=>{
+  const max=document.documentElement.scrollHeight-window.innerHeight;
+  bar.style.width=(window.scrollY/max*100)+'%';
+},{passive:true});
+
+
+
+
+
+/* ══════════════════════════════════════════
+   R. BIG WORD EXPLOSION + REASSEMBLE
+══════════════════════════════════════════ */
+(function(){
+  const section=document.querySelector('.big-word-section');
+  if(!section)return;
+  let fired=false;
+
+  // wait for glitch clones to be injected first, then grab spans
+  function init(){
+    const spans=[...section.querySelectorAll('h2>span')];
+    if(!spans.length)return;
+
+    // randomize starting positions — offscreen scatter
+    const origins=spans.map(()=>({
+      x:(Math.random()-0.5)*600,
+      y:(Math.random()<0.5?-1:1)*(Math.random()*300+150),
+      r:(Math.random()-0.5)*60,
+      s:Math.random()*0.3+0.1
+    }));
+
+    spans.forEach((span,i)=>{
+      const o=origins[i];
+      span.style.display='inline-block';
+      span.style.willChange='transform,opacity';
+      span.style.transition='none';
+      span.style.opacity='0';
+      span.style.transform=`translate(${o.x}px,${o.y}px) rotate(${o.r}deg) scale(${o.s})`;
+    });
+
+    const obs=new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting&&!fired){
+          fired=true;
+          obs.disconnect();
+          spans.forEach((span,i)=>{
+            const delay=i*130;
+            setTimeout(()=>{
+              span.style.transition=`transform 1s cubic-bezier(0.19,1,0.22,1), opacity 0.5s ease`;
+              span.style.opacity='1';
+              span.style.transform='translate(0,0) rotate(0deg) scale(1)';
+            },delay);
+          });
+        }
+      });
+    },{threshold:0.25});
+    obs.observe(section);
+  }
+
+  // run after glitch setup (5b) has had time to inject clones
+  setTimeout(init, 50);
+})();
+
+/* ══════════════════════════════════════════
+   3. CURSOR TRAIL (PC only)
+══════════════════════════════════════════ */
+if(window.matchMedia('(pointer:fine)').matches){
+  const TRAIL=12;
+  const dots=[];
+  const positions=[];
+  for(let i=0;i<TRAIL;i++){
+    const d=document.createElement('div');
+    d.className='trail-dot';
+    d.style.cssText=`opacity:${(1-i/TRAIL)*0.55};width:${6-i*0.35}px;height:${6-i*0.35}px;`;
+    document.body.appendChild(d);
+    dots.push(d);
+    positions.push({x:0,y:0});
+  }
+  let tmx=0,tmy=0;
+  window.addEventListener('mousemove',e=>{tmx=e.clientX;tmy=e.clientY;},{passive:true});
+  function trailLoop(){
+    positions.unshift({x:tmx,y:tmy});
+    positions.length=TRAIL+1;
+    positions.pop();
+    dots.forEach((d,i)=>{
+      const p=positions[i]||positions[0];
+      d.style.left=p.x+'px';
+      d.style.top=p.y+'px';
+    });
+    requestAnimationFrame(trailLoop);
+  }
+  trailLoop();
+}
+
+/* ══════════════════════════════════════════
+   4. FILM GRAIN NOISE
+══════════════════════════════════════════ */
+(function(){
+  const canvas=document.getElementById('grain-canvas');
+  const ctx=canvas.getContext('2d');
+  let grainTimer=null;
+  let grainFading=false;
+
+  function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+  resize();
+  window.addEventListener('resize',resize);
+
+  function drawGrain(intensity){
+    const w=canvas.width,h=canvas.height;
+    const img=ctx.createImageData(w,h);
+    const d=img.data;
+    for(let i=0;i<d.length;i+=4){
+      const v=Math.random()*255*intensity|0;
+      d[i]=d[i+1]=d[i+2]=v;
+      d[i+3]=Math.random()*80|0;
+    }
+    ctx.putImageData(img,0,0);
+  }
+
+  let grainRaf=null;
+  function startGrain(duration){
+    if(grainFading)return;
+    grainFading=true;
+    canvas.style.opacity='1';
+    const start=performance.now();
+    function tick(now){
+      const p=Math.min((now-start)/duration,1);
+      const intensity=Math.sin(p*Math.PI)*0.55+0.05;
+      drawGrain(intensity);
+      if(p<1){grainRaf=requestAnimationFrame(tick);}
+      else{canvas.style.opacity='0';grainFading=false;}
+    }
+    cancelAnimationFrame(grainRaf);
+    grainRaf=requestAnimationFrame(tick);
+  }
+
+  // trigger on section entry
+  const grainObs=new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      if(e.isIntersecting)startGrain(700);
+    });
+  },{threshold:0.18});
+  document.querySelectorAll('.section,.big-word-section').forEach(s=>grainObs.observe(s));
+})();
+
+/* ══════════════════════════════════════════
+   5. GLITCH LOOP — Hero + Big Word (persistent)
+══════════════════════════════════════════ */
+
+/* ══════════════════════════════════════════
+   5b. GLITCH TEXT
+══════════════════════════════════════════ */
+(function(){
+  const CHARS='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&';
+  const glitchEls=document.querySelectorAll('.glitch-wrap');
+
+  function runGlitch(el){
+    const clones=el.querySelectorAll('.g-clone');
+    const dur=320;
+    const start=performance.now();
+    function tick(now){
+      const p=(now-start)/dur;
+      if(p>=1){clones.forEach(c=>{c.style.transform='';c.style.opacity='0';});return;}
+      const intensity=Math.sin(p*Math.PI);
+      clones.forEach((c,i)=>{
+        const dir=i===0?-1:1;
+        const tx=(Math.random()-0.5)*12*intensity*dir;
+        const ty=(Math.random()-0.5)*4*intensity;
+        c.style.transform=`translate(${tx}px,${ty}px)`;
+        c.style.opacity=String(0.7*intensity);
+        c.style.clipPath=`inset(${Math.random()*40*intensity}% 0 ${Math.random()*40*intensity}% 0)`;
+      });
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  // random interval glitch — replaced by loopGlitch below
+
+  // glitch targets: hero words + big word spans
+  const bigWords=document.querySelectorAll('.big-word-inner h2 span');
+  bigWords.forEach(span=>{
+    // wrap in glitch-wrap with clones
+    const orig=span.innerHTML;
+    span.classList.add('glitch-wrap');
+    const cr=document.createElement('span');cr.className='g-clone r';cr.innerHTML=orig;
+    const cb=document.createElement('span');cb.className='g-clone b';cb.innerHTML=orig;
+    span.appendChild(cr);span.appendChild(cb);
+  });
+
+  const allGlitch=document.querySelectorAll('.glitch-wrap');
+
+  function loopGlitch(el){
+    const delay=Math.random()*3500+1200;
+    setTimeout(()=>{runGlitch(el);loopGlitch(el);},delay);
+  }
+
+  setTimeout(()=>{allGlitch.forEach(el=>loopGlitch(el));},0);
+})();
+
+/* ══════════════════════════════════════════
+   7. LIQUID DISTORTION — Works Cards (WebGL)
+══════════════════════════════════════════ */
+(function(){
+  const cards=document.querySelectorAll('#works .wcard');
+  cards.forEach(card=>{
+    const canvas=document.createElement('canvas');
+    canvas.style.cssText='position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;opacity:0;transition:opacity 0.3s;';
+    card.appendChild(canvas);
+
+    const gl=canvas.getContext('webgl');
+    if(!gl)return;
+
+    const vert=`attribute vec2 a;void main(){gl_Position=vec4(a,0,1);}`;
+    const frag=`
+precision mediump float;
+uniform vec2 u_res;
+uniform float u_time;
+uniform float u_intensity;
+void main(){
+  vec2 uv=gl_FragCoord.xy/u_res;
+  float t=u_time;
+  float wave1=sin(uv.x*8.0+t*2.5)*cos(uv.y*6.0+t*1.8)*u_intensity;
+  float wave2=sin(uv.y*10.0-t*2.0)*cos(uv.x*7.0+t*1.2)*u_intensity;
+  vec2 d=vec2(wave1,wave2)*0.018;
+  vec2 uv2=uv+d;
+  float r=smoothstep(0.0,1.0,uv2.x);
+  float g=smoothstep(0.0,1.0,uv2.y)*0.45;
+  float b=1.0-smoothstep(0.0,1.0,length(uv2-0.5)*1.4);
+  vec3 col=mix(vec3(0.08,0.04,0.02),vec3(0.96,0.47,0.13),wave1*0.5+0.5)*0.28;
+  gl_FragColor=vec4(col,0.45*u_intensity);
+}`;
+
+    function mkShader(type,src){const s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);return s;}
+    const prog=gl.createProgram();
+    gl.attachShader(prog,mkShader(gl.VERTEX_SHADER,vert));
+    gl.attachShader(prog,mkShader(gl.FRAGMENT_SHADER,frag));
+    gl.linkProgram(prog);
+    gl.useProgram(prog);
+
+    const buf=gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+    gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
+    const aLoc=gl.getAttribLocation(prog,'a');
+    gl.enableVertexAttribArray(aLoc);
+    gl.vertexAttribPointer(aLoc,2,gl.FLOAT,false,0,0);
+
+    const uRes=gl.getUniformLocation(prog,'u_res');
+    const uTime=gl.getUniformLocation(prog,'u_time');
+    const uInt=gl.getUniformLocation(prog,'u_intensity');
+
+    let raf=null,intensity=0,target=0,startT=null;
+
+    function resize(){
+      const r=card.getBoundingClientRect();
+      canvas.width=r.width||400;
+      canvas.height=r.height||225;
+      gl.viewport(0,0,canvas.width,canvas.height);
+    }
+    resize();
+    new ResizeObserver(resize).observe(card);
+
+    function render(ts){
+      if(!startT)startT=ts;
+      const t=(ts-startT)*0.001;
+      intensity+=(target-intensity)*0.08;
+      gl.clear(gl.COLOR_BUFFER_BIT);
+      gl.uniform2f(uRes,canvas.width,canvas.height);
+      gl.uniform1f(uTime,t);
+      gl.uniform1f(uInt,intensity);
+      gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
+      raf=requestAnimationFrame(render);
+    }
+
+    card.addEventListener('mouseenter',()=>{
+      target=1;canvas.style.opacity='1';
+      if(!raf)raf=requestAnimationFrame(render);
+    });
+    card.addEventListener('mouseleave',()=>{
+      target=0;
+      setTimeout(()=>{if(Math.abs(intensity)<0.01){cancelAnimationFrame(raf);raf=null;canvas.style.opacity='0';}},800);
+    });
+
+    // touch support
+    card.addEventListener('touchstart',()=>{target=1;canvas.style.opacity='1';if(!raf)raf=requestAnimationFrame(render);},{passive:true});
+    card.addEventListener('touchend',()=>{target=0;setTimeout(()=>{canvas.style.opacity='0';},600);},{passive:true});
+  });
+})();
 const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');e.target.querySelectorAll('.tit-mask').forEach(m=>m.classList.add('on'));}});},{threshold:0.12});
 document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
 
-// Staggered title mask reveal
 const textRevealObserver=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.querySelectorAll('.tit-mask').forEach((mask,i)=>{setTimeout(()=>{mask.classList.add('on');},i*150);});textRevealObserver.unobserve(entry.target);}});},{threshold:0.15});
 document.querySelectorAll('.section').forEach(sec=>textRevealObserver.observe(sec));
 
-// Scroll reveal (.sr) — 순차적으로 올라오는 효과
 const srObs=new IntersectionObserver(es=>{
   const visible=es.filter(e=>e.isIntersecting);
   visible.sort((a,b)=>a.boundingClientRect.top-b.boundingClientRect.top);
