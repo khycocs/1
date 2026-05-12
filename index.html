@@ -36,7 +36,7 @@ body{background:var(--dk);color:#fff;font-family:'Roboto','Pretendard',sans-seri
 .grad{background:linear-gradient(90deg,var(--r),var(--o) 50%,var(--g));-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:inline-block;}
 
 /* SECTION TITLE */
-.section-title{font-family:'Roboto';font-weight:900;font-size:clamp(42px,7vw,100px)!important;line-height:1.1!important;letter-spacing:-1px!important;color:#fff;position:relative;z-index:20;margin-top:-0.2em!important;margin-bottom:-0.2em!important;}
+.section-title{font-family:'Roboto';font-weight:900;font-size:clamp(42px,7vw,100px)!important;line-height:1!important;letter-spacing:-1px!important;color:#fff;position:relative;z-index:20;margin-top:-0.2em!important;margin-bottom:-0.2em!important;}
 
 /* TIT-MASK */
 .tit-mask{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:0.2em!important;margin-bottom:-0.2em!important;}
@@ -218,19 +218,19 @@ footer p{font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:2px;}
   #hero{padding:0 24px 50px;min-height:600px;}
   .hero-content .tag{font-size:9px;letter-spacing:3px;margin-bottom:20px;}
   .hero-h .ln{font-size:clamp(40px,12vw,72px)!important;letter-spacing:0px;}
-  .hero-foot{flex-direction:column;align-items:flex-start;gap:24px;margin-top:32px;}
+  .hero-foot{flex-direction:column;align-items:flex-start;gap:50px;margin-top:32px;}
   .hero-desc{font-size:15px!important;line-height:1.6!important;margin-top:8px!important;max-width:100%!important;}
 
   .title-bar{padding:32px 0;}
   .title-track .item{font-size:36px;padding:0 18px;letter-spacing:0px;}
   .star{font-size:18px;margin:0 4px;}
 
-  #about{grid-template-columns:1fr;gap:32px;margin-top:60px!important;}
-  .about-r{padding-top:0;}
+  #about{grid-template-columns:1fr;gap:20px;margin-top:60px!important;}
+  .about-r{padding-top:0;margin-bottom:36px;}
   .about-p{font-size:15px;margin-bottom:36px;margin-left: 0px;}
   .quote{font-size:32px;letter-spacing:0px;margin-left: 0px;}
 
-  .section-title{font-size:36px!important;letter-spacing:0px!important;}
+  .section-title{font-size:36px!important;letter-spacing:0px!important;line-height: 1.0 !important;}
   .tag{font-size:9px;letter-spacing:4px;margin-bottom:20px;}
   .hero-h .ln,.section-title,.contact-h2{letter-spacing:0em!important;word-break:keep-all;}
   .hero-desc,.about-p,.svc-ko,.desc-gray,.vl{letter-spacing:0em!important;line-height:1.6;}
@@ -267,7 +267,16 @@ footer p{font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:2px;}
   footer{padding:36px 24px;}
   footer p{font-size:10px;letter-spacing:1px;text-align:center;}
 }
-
+@media(max-width:768px) {
+  /* #about 아이디를 앞에 붙여서 이 섹션 타이틀만 타겟팅합니다 */
+  #about .section-title,
+  #about .tit-mask,
+  #about .tit-mask span {
+    line-height: 1.1 !important; /* 원하는 행간 수치 */
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+  }
+}
 @media(max-width:480px){
   .hero-h .ln{font-size:48px!important;}
   .section-title{font-size:36px!important;}
